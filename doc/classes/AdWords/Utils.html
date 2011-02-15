@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>AdWords::Utils</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            AdWords::Utils 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/adwords4r/utils_rb.html">lib/adwords4r/utils.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>G</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000048">get_map</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>O</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000049">operation_index_for_error</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000048">
+                    
+                    <a name="M000048"></a><b>get_map</b>(entries)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Gets a map from an array of map entries. A map entry is any object that has
+a key and value field.
+</p>
+<p>
+Args:
+</p>
+<ul>
+<li>entries: list of map entries
+
+</li>
+</ul>
+<p>
+Returns:
+</p>
+<ul>
+<li>hash constructed from map entries
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show</a>
+                        
+                    </p>
+                    <div id="M000048_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/adwords4r/utils.rb, line 37</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_map</span>(<span class="ruby-identifier">entries</span>)
+      <span class="ruby-identifier">map</span> = {}
+      <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">map</span>[<span class="ruby-identifier">entry</span>.<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">value</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">map</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000049">
+                    
+                    <a name="M000049"></a><b>operation_index_for_error</b>(error)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns the source operation index for an error
+</p>
+<p>
+Args:
+</p>
+<ul>
+<li>error: the error to be analyzed
+
+</li>
+</ul>
+<p>
+Returns:
+</p>
+<ul>
+<li>index for the source operation, nil if none
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show</a>
+                        
+                    </p>
+                    <div id="M000049_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/adwords4r/utils.rb, line 53</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">operation_index_for_error</span>(<span class="ruby-identifier">error</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">error</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:fieldPath</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">fieldPath</span>
+        <span class="ruby-identifier">parts</span> = <span class="ruby-identifier">error</span>.<span class="ruby-identifier">fieldPath</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parts</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+          <span class="ruby-identifier">match</span> = <span class="ruby-identifier">parts</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/operations\[(\d)\]/</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">match</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    
